@@ -2,47 +2,69 @@
   <v-app>
     <v-app-bar app color="primary" dark>
       <div class="d-flex align-center">
-        <v-btn to="/" text>
-          <span class="mr-2">Home</span>
-          <v-icon>mdi-open-in-new</v-icon>
+        <v-btn flat @click="userSignOut" v-if="isAuthenticated">
+          Sign Out
         </v-btn>
-
-        <v-btn to="/signUp" text>
-          <span class="mr-2">Sign Up</span>
-          <v-icon>mdi-open-in-new</v-icon>
-        </v-btn>
-
-        <v-btn to="/signIn" text>
-          <span class="mr-2">Sign In</span>
-          <v-icon>mdi-open-in-new</v-icon>
-        </v-btn>
-
-        <v-btn to="/post" text>
-          <span class="mr-2">Post</span>
-          <v-icon>mdi-open-in-new</v-icon>
-        </v-btn>
-
-        <v-btn to="/about" text>
-          <span class="mr-2">About</span>
-          <v-icon>mdi-open-in-new</v-icon>
+        <v-btn flat v-for="(item, i) in toolbarItems" :key="item.i" :to="item.link">
+          {{ item.title }}
         </v-btn>
       </div>
     </v-app-bar>
-    <About />
-    <v-content class="container">
-        <router-view></router-view>
+
+    <v-content>
+      <v-spacer></v-spacer>
+      <router-view></router-view>
     </v-content>
   </v-app>
 </template>
 
 <script>
 export default {
-  name: "App",
-
-  components: {},
-
-  data: () => ({
-    //
-  })
+  data() {
+    return {
+      clipped: false,
+      drawer: true,
+      fixed: false,
+      items: [
+        {
+          icon: "bubble_chart",
+          title: "Inspire"
+        }
+      ],
+      miniVariant: false,
+      right: true,
+      rightDrawer: false
+    };
+  },
+  computed: {
+    appName() {
+      return this.$store.getters.appTitle;
+    },
+    isAuthenticated() {
+      return (
+        this.$store.getters.getUser !== null &&
+        this.$store.getters.getUser !== undefined
+      );
+    },
+    toolbarItems() {
+      return this.isAuthenticated
+        ? []
+        : [
+            {
+              title: "Sign Up",
+              link: "/signup"
+            },
+            {
+              title: "Sign In",
+              link: "/signin"
+            }
+          ];
+    }
+  },
+  methods: {
+    userSignOut() {
+      this.$store.dispatch("userSignOut");
+    }
+  }
 };
 </script>

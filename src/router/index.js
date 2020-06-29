@@ -1,41 +1,58 @@
 import Vue from 'vue'
-import VueRouter from 'vue-router'
-import Home from '../components/Home.vue'
+import Router from 'vue-router'
+import firebase from 'firebase'
 
-Vue.use(VueRouter)
+Vue.use(Router)
 
-  const routes = [
+const routerOptions = [
   {
-    path: '/',
-    name: 'Home',
-    component: Home
+    path: '*',
+    component: 'NotFound'
   },
   {
-    path: '/about',
-    name: 'About',
-    component: () => import('../components/About.vue')
+    path: '/signup',
+    component: 'SignUp'
   },
   {
-    path: '/signUp',
-    name: 'SignUp',
-    component: () => import('../components/SignUp.vue')
+    path: '/signin',
+    component: 'SignIn'
   },
   {
-    path: '/signIn',
-    name: 'SignIn',
-    component: () => import('../components/SignIn.vue')
-  },
-  {
-    path: '/post',
-    name: 'Post',
-    component: () => import('../components/Post.vue')
+    path: '/bnk48',
+    component: 'BNK48',
+    meta: { requiresAuth: true }
   }
 ]
 
-const router = new VueRouter({
+const routes = routerOptions.map(route => {
+  return {
+    path: route.path,
+    component: () => import(`@/components/${route.component}.vue`),
+    meta: route.meta
+  }
+})
+
+const router = new Router({
   mode: 'history',
-  base: process.env.BASE_URL,
-  routes
+  routes: [
+    ...routes, {
+      path: '*',
+      redirect: '/'
+    }
+  ]
+})
+
+router.beforeEach((to, from, next) => {
+  const requiresAuth = to
+    .matched
+    .some(record => record.meta.requiresAuth)
+  const user = firebase
+    .auth()
+    .currentUser
+  if (requiresAuth && !user) {
+    next('/signin')
+  }
+  next()
 })
 
 export default router
