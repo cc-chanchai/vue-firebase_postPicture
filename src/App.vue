@@ -1,7 +1,8 @@
 <template>
   <v-app>
-
-    <v-app-bar fixed app
+    <v-app-bar
+      fixed
+      app
       color="#success"
       dark
       shrink-on-scroll
@@ -15,8 +16,11 @@
       <v-app-bar-nav-icon></v-app-bar-nav-icon>
       <v-toolbar-title>Vue.js with Firebase</v-toolbar-title>
       <v-spacer></v-spacer>
-      <v-btn flat @click="userSignOut" v-if="isAuthenticated">Sign Out</v-btn>
-      <v-btn flat v-for="(item,index) in toolbarItems" :key="index" :to="item.link">{{ item.title }}</v-btn>
+      <v-btn outlined @click="userSignOut" v-if="isAuthenticated"><v-icon>exit_to_app</v-icon>Sign Out</v-btn>
+      <v-btn  outlined v-for="(item,index) in toolbarItems" :key="index" :to="item.link">
+        <v-icon>{{item.icon}}</v-icon>
+        {{ item.title }}
+      </v-btn>
     </v-app-bar>
     <v-content>
       <v-sheet id="scrolling2" class="overflow-y-auto" max-height="500">
@@ -48,12 +52,19 @@ export default {
         ? []
         : [
             {
+              title: "Home",
+              link: "/",
+              icon: "home"
+            },
+            {
               title: "Sign Up",
-              link: "/signup"
+              link: "/signup",
+              icon: "supervised_user_circle"
             },
             {
               title: "Sign In",
-              link: "/signin"
+              link: "/signin",
+              icon: "portrait"
             }
           ];
     }
