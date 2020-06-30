@@ -1,41 +1,38 @@
 <template>
   <v-app>
-    <v-app-bar app color="primary" dark>
-      <div class="d-flex align-center">
-        <v-btn flat @click="userSignOut" v-if="isAuthenticated">
-          Sign Out
-        </v-btn>
-        <v-btn flat v-for="(item, i) in toolbarItems" :key="item.i" :to="item.link">
-          {{ item.title }}
-        </v-btn>
-      </div>
-    </v-app-bar>
 
-    <v-content>
+    <v-app-bar fixed app
+      color="#success"
+      dark
+      shrink-on-scroll
+      prominent
+      src="https://picsum.photos/1920/1080?random"
+      scroll-target="#scrolling2"
+    >
+      <template v-slot:img="{ props }">
+        <v-img v-bind="props" gradient="to top right, rgba(19,84,122,.5), rgba(128,208,199,.8)"></v-img>
+      </template>
+      <v-app-bar-nav-icon></v-app-bar-nav-icon>
+      <v-toolbar-title>Vue.js with Firebase</v-toolbar-title>
       <v-spacer></v-spacer>
-      <router-view></router-view>
+      <v-btn flat @click="userSignOut" v-if="isAuthenticated">Sign Out</v-btn>
+      <v-btn flat v-for="(item,index) in toolbarItems" :key="index" :to="item.link">{{ item.title }}</v-btn>
+    </v-app-bar>
+    <v-content>
+      <v-sheet id="scrolling2" class="overflow-y-auto" max-height="500">
+        <v-container fluid style="height: 1000px;">
+          <router-view></router-view>
+        </v-container>
+      </v-sheet>
     </v-content>
+    <v-footer class="py-3">
+      <span class="ml-auto overline">GitHub : cc-chanchai &copy;2020</span>
+    </v-footer>
   </v-app>
 </template>
 
 <script>
 export default {
-  data() {
-    return {
-      clipped: false,
-      drawer: true,
-      fixed: false,
-      items: [
-        {
-          icon: "bubble_chart",
-          title: "Inspire"
-        }
-      ],
-      miniVariant: false,
-      right: true,
-      rightDrawer: false
-    };
-  },
   computed: {
     appName() {
       return this.$store.getters.appTitle;

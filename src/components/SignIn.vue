@@ -1,76 +1,87 @@
 <template>
-  <v-layout column>
-    <v-flex xs12 class="text-xs-center" mt-5>
-      <h3>Sign In</h3>
-    </v-flex>
-    <v-flex xs12 sm6 offset-sm3 mt-3>
-      <form @submit.prevent="userSignIn">
-        <v-layout column>
-          <v-flex>
-            <v-alert error dismissible v-model="alert">
-              {{ error }}
-            </v-alert>
-          </v-flex>
-          <v-flex>
-            <v-text-field
-              name="email"
-              label="Email"
-              id="email"
-              type="email"
-              v-model="email"
-              required></v-text-field>
-          </v-flex>
-          <v-flex>
-            <v-text-field
-              name="password"
-              label="Password"
-              id="password"
-              type="password"
-              v-model="password"
-              required></v-text-field>
-          </v-flex>
-          <v-flex class="text-xs-center" mt-5>
-            <v-btn primary type="submit" :disabled="loading">Sign In</v-btn>
-          </v-flex>
-        </v-layout>
-      </form>
-    </v-flex>
-  </v-layout>
+  <div>
+      <v-container class="fill-height" fluid>
+        <v-row align="center" justify="center">
+          <v-col cols="12" sm="8" md="4">
+            <v-card class="elevation-12">
+              <v-toolbar color="success" dark flat>
+                <v-toolbar-title>Sign In</v-toolbar-title>
+              </v-toolbar>
+              <v-card-text>
+                <form @submit.prevent="userSignIn">
+                  <v-layout column>
+                    <v-flex>
+                      <v-alert color="error" dismissible v-model="alert">{{ error }}</v-alert>
+                    </v-flex>
+                    <v-flex>
+                      <v-text-field
+                        name="email"
+                        label="Email"
+                        id="email"
+                        type="email"
+                        v-model="email"
+                        required
+                      ></v-text-field>
+                    </v-flex>
+                    <v-flex>
+                      <v-text-field
+                        name="password"
+                        label="Password"
+                        id="password"
+                        type="password"
+                        v-model="password"
+                        required
+                      ></v-text-field>
+                    </v-flex>
+                    <v-flex class="text-xs-center" mt-5>
+                      <v-btn color="success" type="submit" :disabled="loading">Sign In</v-btn>
+                    </v-flex>
+                  </v-layout>
+                </form>
+              </v-card-text>
+            </v-card>
+          </v-col>
+        </v-row>
+      </v-container>
+  </div>
 </template>
 
 <script>
 export default {
-  data () {
+  data() {
     return {
-      email: '',
-      password: '',
+      email: "",
+      password: "",
       alert: false
-    }
+    };
   },
   computed: {
-    error () {
-      return this.$store.getters.getError
+    error() {
+      return this.$store.getters.getError;
     },
-    loading () {
-      return this.$store.getters.getLoading
+    loading() {
+      return this.$store.getters.getLoading;
     }
   },
   watch: {
-    error (value) {
+    error(value) {
       if (value) {
-        this.alert = true
+        this.alert = true;
       }
     },
-    alert (value) {
+    alert(value) {
       if (!value) {
-        this.$store.dispatch('setError', false)
+        this.$store.dispatch("setError", false);
       }
     }
   },
   methods: {
-    userSignIn () {
-      this.$store.dispatch('userSignIn', {email: this.email, password: this.password})
+    userSignIn() {
+      this.$store.dispatch("userSignIn", {
+        email: this.email,
+        password: this.password
+      });
     }
   }
-}
+};
 </script>

@@ -8,7 +8,7 @@ export const actions = {
             .then(firebaseUser => {
                 commit('setUser', firebaseUser)
                 commit('setLoading', false)
-                router.push('/')
+                router.push('/bnk48')
             })
             .catch(error => {
                 commit('setError', error.message)
@@ -35,6 +35,6 @@ export const actions = {
     userSignOut({ commit }) {
         firebase.auth().signOut()
         commit('setUser', null)
-        router.push('/signin')
+        router.push('/')
     }
 }

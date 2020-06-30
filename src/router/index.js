@@ -10,6 +10,10 @@ const routerOptions = [
     component: 'NotFound'
   },
   {
+    path: '/',
+    component: 'Home'
+  },
+  {
     path: '/signup',
     component: 'SignUp'
   },
