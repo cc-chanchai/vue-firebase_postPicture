@@ -6,18 +6,22 @@
           <v-card class="elevation-3">
             <v-toolbar outlined src="https://picsum.photos/1920/1080?random">
               <v-toolbar-title class="white--text">
-                <v-icon large color="white" class="mx-3">supervised_user_circle</v-icon>SIGN UP
+                <v-icon large color="white" class="mx-3"
+                  >supervised_user_circle</v-icon
+                >SIGN UP
               </v-toolbar-title>
             </v-toolbar>
             <v-card-text>
               <form @submit.prevent="userSignUp">
                 <v-layout column>
                   <v-flex>
-                    <v-alert error dismissible v-model="alert">{{ error }}</v-alert>
+                    <v-alert error dismissible v-model="alert">{{
+                      error
+                    }}</v-alert>
                   </v-flex>
                   <v-flex>
                     <v-text-field
-                    flat
+                      flat
                       outlined
                       name="email"
                       label="Email"
@@ -29,7 +33,7 @@
                   </v-flex>
                   <v-flex>
                     <v-text-field
-                    flat
+                      flat
                       outlined
                       name="password"
                       label="Password"
@@ -41,7 +45,7 @@
                   </v-flex>
                   <v-flex>
                     <v-text-field
-                    flat
+                      flat
                       outlined
                       name="confirmPassword"
                       label="Confirm Password"
@@ -52,7 +56,14 @@
                     ></v-text-field>
                   </v-flex>
                   <v-flex class="text-xs-center" mt-5>
-                    <v-btn rounded outlined primary type="submit" :disabled="loading">Sign Up</v-btn>
+                    <v-btn
+                      rounded
+                      outlined
+                      primary
+                      type="submit"
+                      :disabled="loading"
+                      >Sign Up</v-btn
+                    >
                   </v-flex>
                 </v-layout>
               </form>

@@ -1,15 +1,13 @@
 <template>
   <v-hover>
     <template v-slot:default="{ hover }">
-      <v-card
-        class="mx-auto"
-        max-width="344"
-      >
+      <v-card class="mx-auto" max-width="344">
         <v-img src="https://picsum.photos/1920/1080?random"></v-img>
 
         <v-card-text>
           <h2 class="title primary--text">Magento Forests</h2>
-          Travel to the best outdoor experience on planet Earth. A vacation you will never forget!
+          Travel to the best outdoor experience on planet Earth. A vacation you
+          will never forget!
         </v-card-text>
 
         <v-card-title>
@@ -25,11 +23,7 @@
         </v-card-title>
 
         <v-fade-transition>
-          <v-overlay
-            v-if="hover"
-            absolute
-            color="#036358"
-          >
+          <v-overlay v-if="hover" absolute color="#036358">
             <v-btn>See more info</v-btn>
           </v-overlay>
         </v-fade-transition>
@@ -39,9 +33,7 @@
 </template>
 
 <script>
-  export default {
-    name: 'HelloWorld',
-
-    
-  }
+export default {
+  name: "HelloWorld"
+};
 </script>

@@ -1,13 +1,13 @@
-import Vue from 'vue'
-import App from './App.vue'
-import router from './router'
-import { store } from './store'
-import vuetify from './plugins/vuetify';
-import firebase from 'firebase'
-import { firebaseConfig } from './config'
+import Vue from "vue";
+import App from "./App.vue";
+import router from "./router";
+import { store } from "./store";
+import vuetify from "./plugins/vuetify";
+import firebase from "firebase";
+import { firebaseConfig } from "./config";
 
-firebase.initializeApp(firebaseConfig)
-Vue.config.productionTip = false
+firebase.initializeApp(firebaseConfig);
+Vue.config.productionTip = false;
 
 // new Vue({
 //   router,
@@ -16,7 +16,7 @@ Vue.config.productionTip = false
 //   beforeCreated () {
 //     firebase.getCurrentUser = () => {
 //       firebase.auth().onAuthStateChanged((firebaseUser) => {
-//         if (firebaseUser) {        
+//         if (firebaseUser) {
 //           store.dispatch('autoSignIn', firebaseUser)
 //         }
 //       })
@@ -25,19 +25,18 @@ Vue.config.productionTip = false
 //   render: h => h(App),
 // }).$mount('#app')
 
-const unsubscribe = firebase.auth()
-.onAuthStateChanged((firebaseUser) => {
+const unsubscribe = firebase.auth().onAuthStateChanged(firebaseUser => {
   new Vue({
-    el: '#app',
+    el: "#app",
     router,
     store,
     vuetify,
     render: h => h(App),
-    created () {
+    created() {
       if (firebaseUser) {
-        store.dispatch('autoSignIn', firebaseUser)
+        store.dispatch("autoSignIn", firebaseUser);
       }
     }
-  })
-  unsubscribe()
-})
+  });
+  unsubscribe();
+});
