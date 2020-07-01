@@ -5,7 +5,7 @@
         class="mx-auto"
         max-width="344"
       >
-        <v-img src="https://cdn.vuetifyjs.com/images/cards/forest-art.jpg"></v-img>
+        <v-img src="https://picsum.photos/1920/1080?random"></v-img>
 
         <v-card-text>
           <h2 class="title primary--text">Magento Forests</h2>

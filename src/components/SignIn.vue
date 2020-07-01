@@ -3,10 +3,10 @@
     <v-container class="fill-height" fluid>
       <v-row align="center" justify="center">
         <v-col cols="12" sm="8" md="4">
-          <v-card class="elevation-12">
-            <v-toolbar outlined flat>
-              <v-toolbar-title class="grey--text">
-                <v-icon>portrait</v-icon>SIGN IN
+          <v-card class="elevation-3">
+            <v-toolbar outlined src="https://picsum.photos/1920/1080?random">
+              <v-toolbar-title class="white--text">
+                <v-icon large color="white" class="mx-3">portrait</v-icon>SIGN IN
               </v-toolbar-title>
             </v-toolbar>
             <v-card-text>
@@ -39,15 +39,8 @@
                       required
                     ></v-text-field>
                   </v-flex>
-                  <v-flex class="text-xs-center" mt-5>
-                    <v-btn
-                      rounded
-                      outlined
-                      class="grey--text"
-                      color
-                      type="submit"
-                      :disabled="loading"
-                    >Sign In</v-btn>
+                  <v-flex class="text-xs-center">
+                    <v-btn rounded outlined type="submit" :disabled="loading">Sign In</v-btn>
                   </v-flex>
                 </v-layout>
               </form>

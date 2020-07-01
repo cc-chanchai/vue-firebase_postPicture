@@ -3,7 +3,7 @@
     <v-app-bar
       fixed
       app
-      color="#success"
+      color="success"
       dark
       shrink-on-scroll
       prominent
@@ -16,8 +16,8 @@
       <v-app-bar-nav-icon></v-app-bar-nav-icon>
       <v-toolbar-title>Vue.js with Firebase</v-toolbar-title>
       <v-spacer></v-spacer>
-      <v-btn outlined @click="userSignOut" v-if="isAuthenticated"><v-icon>exit_to_app</v-icon>Sign Out</v-btn>
-      <v-btn  outlined v-for="(item,index) in toolbarItems" :key="index" :to="item.link">
+      <v-btn class="ma-1" outlined @click="userSignOut" v-if="isAuthenticated"><v-icon>exit_to_app</v-icon>Sign Out</v-btn>
+      <v-btn class="ma-1" outlined v-for="(item,index) in toolbarItems" :key="index" :to="item.link">
         <v-icon>{{item.icon}}</v-icon>
         {{ item.title }}
       </v-btn>
