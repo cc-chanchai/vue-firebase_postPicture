@@ -33,13 +33,13 @@
         {{ item.title }}
       </v-btn>
     </v-app-bar>
-    <v-content>
+    <v-main>
       <v-sheet id="scrolling2" class="overflow-y-auto" max-height="500">
         <v-container fluid style="height: 1000px;">
           <router-view></router-view>
         </v-container>
       </v-sheet>
-    </v-content>
+    </v-main>
     <v-footer class="py-3">
       <span class="ml-auto overline">GitHub : cc-chanchai &copy;2020</span>
     </v-footer>
