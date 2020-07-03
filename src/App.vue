@@ -7,8 +7,8 @@
       dark
       shrink-on-scroll
       prominent
-      src="https://picsum.photos/1920/1080?random"
-      scroll-target="#scrolling2"
+      :src="srcPic"
+      scroll-target="#scrolling"
     >
       <template v-slot:img="{ props }">
         <v-img
@@ -34,7 +34,7 @@
       </v-btn>
     </v-app-bar>
     <v-main>
-      <v-sheet id="scrolling2" class="overflow-y-auto" max-height="500">
+      <v-sheet id="scrolling" class="overflow-y-auto" max-height="700">
         <v-container fluid style="height: 1000px;">
           <router-view></router-view>
         </v-container>
@@ -45,12 +45,11 @@
     </v-footer>
   </v-app>
 </template>
-
 <script>
 export default {
   computed: {
-    appName() {
-      return this.$store.getters.appTitle;
+    srcPic() {
+      return this.$store.getters.getSrcPic;
     },
     isAuthenticated() {
       return (

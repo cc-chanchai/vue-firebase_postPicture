@@ -4,7 +4,7 @@
       <v-row align="center" justify="center">
         <v-col cols="12" sm="8" md="4">
           <v-card class="elevation-3">
-            <v-toolbar outlined src="https://picsum.photos/1920/1080?random">
+            <v-toolbar outlined :src="this.$store.getters.getSrcPic">
               <v-toolbar-title class="white--text">
                 <v-icon large color="white" class="mx-3">portrait</v-icon>SIGN
                 IN

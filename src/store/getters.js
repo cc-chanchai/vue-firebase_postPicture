@@ -10,5 +10,8 @@ export const getters = {
   },
   getLoading(state) {
     return state.loading;
+  },
+  getSrcPic(state) {
+    return state.srcPic;
   }
 };
